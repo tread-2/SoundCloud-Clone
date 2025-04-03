@@ -1,40 +1,46 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link } from "react-router-dom";
 import "./styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
 
-    const [searchTerm, setSearchTerm] = useState("");
-    
-    const handleSearch = (e) => {
-        e.preventDefault();
-        console.log("Searching for:", searchTerm);
-    }
+  return (
+    <nav className="navbar">
+      {/* Logo WIP*/}
+      <div className="logo">
+        <Link to="/"> 
+          <img src="/logo.png" alt="SoundCloud Clone" />
+        </Link>
+      </div>
 
-    return (
-        <nav className="navbar">
-            <div className="logo">
-                <h1>SoundCloud</h1>
-            </div>
-            <form className="search-bar" onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder="Search for music..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button type="submit">🔍</button>
-            </form>
-            <div className="nav-links">
-                <a href="/">Home</a>
-                <a href="/explore">Explore</a>
-                <a href="/library">Library</a>
-                <a href="/profile">Profile</a>
-                <a href="/setting">Settings</a>
-                <a href="/upload">Upload</a>
-            </div>
-        </nav>
-    );
+      {/* Search Bar */}
+      <div className="search-bar">
+        <input type="text" placeholder="Search for music..." />
+        <button>Search</button>
+      </div>
+
+      {/* Navigation Links */}
+      <div className="nav-links">
+        <Link to="/">Home</Link>
+        <Link to="/explore">Explore</Link>
+        <Link to="/library">Library</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to="/upload">Upload</Link>
+
+        {/* Auth Links */}
+        {!isAuthenticated ? (
+          <>
+            <Link to="/login">Sign In</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        ) : (
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
+        )}
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
