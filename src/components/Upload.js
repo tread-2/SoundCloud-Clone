@@ -6,7 +6,7 @@ const Upload = () => {
     const [error, setError] = useState("");
 
     // Allowed file types
-    const allowedTypes = ["audio/mp3", "audio/wav", "audio/flac", "audio/ogg"];
+    const allowedTypes = ["audio/mpeg", "audio/wav", "audio/flac", "audio/ogg"];
 
     // Handle File Selection
     const handleFileChange = (event) => {
