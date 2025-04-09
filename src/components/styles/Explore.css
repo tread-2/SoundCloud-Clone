@@ -1,0 +1,126 @@
+.explore-container {
+    padding: 20px;
+    background-color: white;
+    color: black;
+}
+
+.page-title {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #121212;
+    text-align: center;
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.genres span {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #121212;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.genres span:hover, .genres span.active {
+    background-color: #ff5500;
+}
+
+.tracks-section {
+    margin-top: 20px;
+}
+
+.tracks-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tracks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.track-card {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.track-card:hover {
+    transform: scale(1.03);
+}
+
+.track-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.track-title {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.track-artist {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.listen-button {
+    display: inline-block;
+    background-color: #ff7700;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.listen-button:hover {
+    background-color: #e66000;
+}
+
+.event-finder-section {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+.event-button {
+    background-color: #ff7700;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.event-button:hover {
+    background-color: #e66000;
+}

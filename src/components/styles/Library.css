@@ -1,0 +1,54 @@
+.library-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #ff7700;
+    margin-bottom: 10px;
+}
+
+.track-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.track-card, .playlist-card {
+    width: 180px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    text-align: center;
+}
+
+.track-card img, .playlist-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.track-card h3, .playlist-card h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.track-card p {
+    font-size: 14px;
+    color: #666;
+}
