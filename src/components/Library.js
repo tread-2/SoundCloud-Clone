@@ -1,101 +1,111 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./styles/Explore.css";
-import { searchTracks, formatTrack } from "../service/openwhyd";
+import { useState } from "react";
+import "./styles/Library.css"; 
 
-const genreKeywords = {
-    "Pop": "pop",
-    "Electronic": "electronic edm",
-    "Hip-Hop": "hiphop rap",
-    "Rock": "rock",
-    "Country": "country",
-    "Jazz": "jazz"
-};
+const Library = () => {
+    // Mock data for each section
+    const recentlyPlayed = [
+        { id: 1, title: "Chill Vibes", artist: "DJ Chill", artwork: "https://source.unsplash.com/200x200/?music,chill", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+        { id: 2, title: "Lo-Fi Beats", artist: "LoFi Master", artwork: "https://source.unsplash.com/200x200/?lofi,beats", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+    ];
 
-const Explore = () => {
-    const [selectedGenre, setSelectedGenre] = useState(null);
-    const [tracks, setTracks] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const likedTracks = [
+        { id: 3, title: "Rock Anthem", artist: "The Rockers", artwork: "https://source.unsplash.com/200x200/?rock,music", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+        { id: 4, title: "Electronic Journey", artist: "EDM King", artwork: "https://source.unsplash.com/200x200/?edm,dj", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+    ];
 
-    useEffect(() => {
-        if (selectedGenre) {
-            loadGenreTracks(selectedGenre);
-        }
-    }, [selectedGenre]);
+    const myTracks = [
+        { id: 7, title: "Summer Beats", artist: "DJ Sun", artwork: "https://source.unsplash.com/200x200/?summer,beats", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
+        { id: 8, title: "Party Mix", artist: "DJ Dance", artwork: "https://source.unsplash.com/200x200/?party,mix", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
+    ];
 
-    const loadGenreTracks = async (genre) => {
-        try {
-            setLoading(true);
-            const searchQuery = genreKeywords[genre];
-            const results = await searchTracks(searchQuery, 10);
-            setTracks(results.map(formatTrack));
-        } catch (error) {
-            console.error("Error loading genre tracks:", error);
-            setTracks([]);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const userPlaylists = [
+        { id: 5, name: "My Chill Mix", image: "https://source.unsplash.com/200x200/?playlist,chill" },
+        { id: 6, name: "Workout Tracks", image: "https://source.unsplash.com/200x200/?workout,music" },
+    ];
 
-    // Function to update the selected genre when a genre is clicked
-    const handleGenreClick = (genre) => {
-        setSelectedGenre(genre);
+    // 🔹 Download function
+    const handleDownload = (url, filename) => {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename; // Suggests a filename
+        link.target = "_blank"; // Opens in a new tab if needed
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     return (
-        <div className="explore-container">
-            <h1 className="page-title">Explore Genres</h1>
-            <div className="genres">
-                {Object.keys(genreKeywords).map((genre) => (
-                    <span 
-                        key={genre} 
-                        onClick={() => handleGenreClick(genre)}
-                        className={selectedGenre === genre ? "active" : ""}
-                    >
-                        {genre}
-                    </span>
-                ))}
-            </div>
+        <div className="library-container">
+            <h1 className="page-title">Your Library</h1>
 
-            {/* Tracks Display */}
-            {loading ? (
-                <div className="loading">Loading tracks...</div>
-            ) : selectedGenre && (
-                <div className="tracks-section">
-                    <h2>{selectedGenre} Tracks</h2>
-                    <div className="tracks-container">
-                        {tracks.length > 0 ? (
-                            tracks.map((track) => (
-                                <div key={track.id} className="track-card">
-                                    <img src={track.artwork} alt={track.title} />
-                                    <h3 className="track-title">{track.title}</h3>
-                                    <p className="track-artist">{track.artist}</p>
-                                    {track.url && (
-                                        <a 
-                                            href={track.url} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="listen-button"
-                                        >
-                                            Listen
-                                        </a>
-                                    )}
-                                </div>
-                            ))
-                        ) : (
-                            <p>No tracks found for this genre</p>
-                        )}
-                    </div>
+            {/* Recently Played Section */}
+            <section>
+                <h2>Recently Played</h2>
+                <div className="track-list">
+                    {recentlyPlayed.map(track => (
+                        <div key={track.id} className="track-card">
+                            <img src={track.artwork} alt={track.title} />
+                            <h3>{track.title}</h3>
+                            <p>{track.artist}</p>
+                            {/* ⬇ Download Button */}
+                            <button className="download-btn" onClick={() => handleDownload(track.url, `${track.title}.mp3`)}>
+                                ⬇ Download
+                            </button>
+                        </div>
+                    ))}
                 </div>
-            )}
+            </section>
 
-            {/* Event Finder Button */}
-            <div className="event-finder-section">
-                <h2>Find Music Events Near You</h2>
-                <Link to="/events" className="event-button">Find Events</Link>
-            </div>
+            {/* Liked Tracks Section */}
+            <section>
+                <h2>Liked Tracks</h2>
+                <div className="track-list">
+                    {likedTracks.map(track => (
+                        <div key={track.id} className="track-card">
+                            <img src={track.artwork} alt={track.title} />
+                            <h3>{track.title}</h3>
+                            <p>{track.artist}</p>
+                            {/* ⬇ Download Button */}
+                            <button className="download-btn" onClick={() => handleDownload(track.url, `${track.title}.mp3`)}>
+                                ⬇ Download
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* My Tracks Section */}
+            <section>
+                <h2>My Tracks</h2>
+                <div className="track-list">
+                    {myTracks.map(track => (
+                        <div key={track.id} className="track-card">
+                            <img src={track.artwork} alt={track.title} />
+                            <h3>{track.title}</h3>
+                            <p>{track.artist}</p>
+                            {/* ⬇ Download Button */}
+                            <button className="download-btn" onClick={() => handleDownload(track.url, `${track.title}.mp3`)}>
+                                ⬇ Download
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Playlists Section */}
+            <section>
+                <h2>Your Playlists</h2>
+                <div className="track-list">
+                    {userPlaylists.map(playlist => (
+                        <div key={playlist.id} className="playlist-card">
+                            <img src={playlist.image} alt={playlist.name} />
+                            <h3>{playlist.name}</h3>
+                        </div>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 };
 
-export default Explore;
+export default Library;
