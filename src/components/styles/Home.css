@@ -125,6 +125,30 @@
     text-decoration: underline;
 }
 
+.bottom-section {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-  
+.bottom-section .section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.trending-banner {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.trending-banner img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
   

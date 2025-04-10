@@ -52,3 +52,64 @@ h2 {
     font-size: 14px;
     color: #666;
 }
+
+.filter-buttons {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .filter-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #f07808;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filter-buttons button.active {
+    background: #ff5500;
+    color: white;
+  }
+  
+  .track-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+  
+  .like-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: grey; /* Default color when not liked */
+    transition: color 0.3s ease;
+  }
+  
+  .download-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: orange;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    color: white;
+    transition: background-color 0.2s ease;
+  }
+  
+  .download-btn:hover:not(:disabled) {
+    background-color: darkorange;
+  }
+  
+  .download-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  
+  .like-btn.liked {
+    color: red;
+  }
