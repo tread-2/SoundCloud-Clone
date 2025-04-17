@@ -1,0 +1,115 @@
+.genre-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.genre-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.genre-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.genre-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.player-container {
+    margin-bottom: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.genre-tracks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.genre-track-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.genre-track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.genre-track-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.track-title {
+    font-size: 1.2rem;
+    margin: 10px 15px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 15px 10px;
+}
+
+.track-link {
+    display: block;
+    background-color: #ff5500;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    margin: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.track-link:hover {
+    background-color: #ff7730;
+}
+
+.back-to-explore {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #555;
+}
+
+.loading, .error-message {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.error-message {
+    color: #ff3333;
+}

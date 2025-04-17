@@ -1,0 +1,85 @@
+.event-finder-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.info-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.event-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.event-date {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.event-location {
+    font-size: 1rem;
+    color: #555;
+}
+
+.event-link {
+    font-size: 1rem;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.event-link:hover {
+    text-decoration: underline;
+}
+
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    width: 220px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-bar button:hover {
+    background-color: #e04400;
+  }
+  
