@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import "./styles/Home.css"; 
 import { getHotTracks, getLatestTracks, formatTrack } from "../service/openwhyd";
 
+
+
 const Home = () => {
     const [trendingTracks, setTrendingTracks] = useState([]);
     const [popularPlaylists, setPopularPlaylists] = useState([]);

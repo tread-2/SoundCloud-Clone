@@ -5,30 +5,19 @@ const EventFinder = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const [searchCity, setSearchCity] = useState("San Francisco");
-  const [searchArtist, setSearchArtist] = useState("");
-  const [searchDate, setSearchDate] = useState("");
+  const [city, setCity] = useState("San Francisco"); // Default city
+  const [searchCity, setSearchCity] = useState("San Francisco"); // Controlled input
 
   const apiKey = "ZxIcUvZTX1eCrsjL69K1aQLthexeXu7K"; // Ticketmaster API key
 
-  const fetchEvents = async () => {
+  const fetchEvents = async (cityName) => {
     setLoading(true);
     setError(null);
-
-    const params = new URLSearchParams({
-      apikey: apiKey,
-      classificationName: "music",
-    });
-
-    if (searchCity.trim()) params.append("city", searchCity.trim());
-    if (searchArtist.trim()) params.append("keyword", searchArtist.trim());
-    if (searchDate.trim()) params.append("startDateTime", `${searchDate}T00:00:00Z`);
-
     try {
       const response = await fetch(
-        `https://app.ticketmaster.com/discovery/v2/events.json?${params.toString()}`
+        `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=${cityName}&apikey=${apiKey}`
       );
+
       const data = await response.json();
       const eventList = data._embedded?.events || [];
 
@@ -50,36 +39,29 @@ const EventFinder = () => {
     }
   };
 
-  // Initial load
   useEffect(() => {
-    fetchEvents();
-    // eslint-disable-next-line
-  }, []);
+    fetchEvents(city);
+  }, [city]);
+
+  const handleSearch = () => {
+    if (searchCity.trim()) {
+      setCity(searchCity.trim());
+    }
+  };
 
   return (
     <div className="event-finder-container">
       <h1 className="page-title">Find Events Near You</h1>
-      <p className="info-text">Search for music events by city, artist, or date using the Ticketmaster API.</p>
+      <p className="info-text">Search for music events in your city using the Ticketmaster API.</p>
 
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Enter city..."
+          placeholder="Enter city name..."
           value={searchCity}
           onChange={(e) => setSearchCity(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Enter artist name..."
-          value={searchArtist}
-          onChange={(e) => setSearchArtist(e.target.value)}
-        />
-        <input
-          type="date"
-          value={searchDate}
-          onChange={(e) => setSearchDate(e.target.value)}
-        />
-        <button onClick={fetchEvents}>Search</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
 
       {loading ? (
@@ -87,7 +69,7 @@ const EventFinder = () => {
       ) : error ? (
         <div>{error}</div>
       ) : events.length === 0 ? (
-        <div>No events found with your criteria.</div>
+        <div>No events found in {city}.</div>
       ) : (
         <div className="event-list">
           {events.map((event) => (

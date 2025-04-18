@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./styles/Profile.css"; 
+import profilePic from "../assets/profile.jpg"; // Placeholder for profile picture
 
 const Profile = () => {
     // Mock user data
     const user = {
         name: "John Doe",
-        profilePicture: "https://source.unsplash.com/150x150/?portrait",
+        profilePicture: profilePic,
     };
 
     // Mock uploaded tracks
