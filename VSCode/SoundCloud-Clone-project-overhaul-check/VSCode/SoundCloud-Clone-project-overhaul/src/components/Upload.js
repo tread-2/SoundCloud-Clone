@@ -22,12 +22,10 @@ const Upload = () => {
     }
   };
 
-  // Trigger file input click
   const triggerFileInput = () => {
     fileInputRef.current.click();
   };
 
-  // Handle File Upload
   const handleUpload = () => {
     if (!selectedFile) {
       setError("No file selected!");
@@ -46,7 +44,7 @@ const Upload = () => {
     setSongs(updatedSongs);
     localStorage.setItem("songs", JSON.stringify(updatedSongs));
   
-    // ✅ Mark the "first upload" achievement
+    //  Mark the "first upload" achievement
     if (!localStorage.getItem("achievement_first_upload")) {
       localStorage.setItem("achievement_first_upload", "true");
     }
@@ -60,7 +58,6 @@ const Upload = () => {
     setSongs(storedSongs);
   }, []);
 
-  // Clear all uploaded songs (mostly for testing purposes)
   const handleClearAll = () => {
     localStorage.removeItem("songs");
     setSongs([]);

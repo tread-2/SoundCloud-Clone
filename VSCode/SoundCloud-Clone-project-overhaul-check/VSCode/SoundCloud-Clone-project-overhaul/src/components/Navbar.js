@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/Navbar.css";
-import { searchTracks } from "../service/openwhyd";
+import logo from "../assets/soundcloud-logo.png";
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,17 +15,13 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    
     if (!searchQuery.trim()) return;
-    
+
     setIsSearching(true);
-    
+
     try {
-      // Store search query in session storage to use in SearchResults component
-      sessionStorage.setItem('searchQuery', searchQuery);
-      sessionStorage.setItem('isSearching', 'true');
-      
-      // Navigate to search results page
+      sessionStorage.setItem("searchQuery", searchQuery);
+      sessionStorage.setItem("isSearching", "true");
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
     } catch (error) {
       console.error("Search error:", error);
@@ -36,45 +32,48 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
 
   return (
     <nav className="navbar">
-      {/* Logo */}
-      <div className="logo">
-        <Link to="/"> 
-          <img src="/logo.png" alt="SoundCloud Clone" />
-        </Link>
-      </div>
+      <div className="navbar-container">
+        {/* Left: Logo + Main Nav Links */}
+        <div className="navbar-left">
+          <Link to="/" className="logo">
+            <img src={logo} alt="SoundCloud Clone" />
+          </Link>
+          <div className="left-links">
+            <Link to="/">Home</Link>
+            <Link to="/explore">Explore</Link>
+            <Link to="/library">Library</Link>
+          </div>
+        </div>
 
-      {/* Search Bar */}
-      <div className="search-bar">
-        <form onSubmit={handleSearch}>
-          <input 
-            type="text" 
-            placeholder="Search for music..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button type="submit" disabled={isSearching}>
-            {isSearching ? "Searching..." : "Search"}
-          </button>
-        </form>
-      </div>
+        {/* Center: Search */}
+        <div className="search-bar">
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Search for music..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
+        </div>
 
-      {/* Navigation Links */}
-      <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/explore">Explore</Link>
-        <Link to="/library">Library</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/upload">Upload</Link>
-
-        {/* Auth Links */}
-        {!isAuthenticated ? (
-          <>
-            <Link to="/login">Sign In</Link>
-            <Link to="/signup">Sign Up</Link>
-          </>
-        ) : (
-          <button className="logout-btn" onClick={handleLogout}>Logout</button>
-        )}
+        {/* Right: Upload + Auth/Profile */}
+        <div className="navbar-right">
+          <Link to="/upload">Upload</Link>
+          {isAuthenticated ? (
+            <>
+              <Link to="/profile">Profile</Link>
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Sign In</Link>
+              <Link to="/signup">Sign Up</Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

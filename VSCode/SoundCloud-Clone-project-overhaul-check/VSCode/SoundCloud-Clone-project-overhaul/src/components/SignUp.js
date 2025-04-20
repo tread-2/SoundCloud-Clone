@@ -14,10 +14,8 @@ const Signup = ({ setIsAuthenticated }) => {
       alert("Passwords do not match!");
       return;
     }
-
-    // For now, assume registration is successful.
     setIsAuthenticated(true);
-    navigate("/"); // Redirect to home page
+    navigate("/"); 
   };
 
   return (

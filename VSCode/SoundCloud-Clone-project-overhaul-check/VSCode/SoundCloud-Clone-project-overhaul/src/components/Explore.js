@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./styles/Explore.css";
 import { getHotTracks, formatTrack } from "../service/openwhyd";
 
-// Keep your existing genrePlaylists for the SoundCloud player
+
 const genrePlaylists = {
     "Pop": "https://soundcloud.com/charts/top?genre=pop",
     "Electronic": "https://soundcloud.com/charts/top?genre=electronic",
@@ -78,6 +78,41 @@ const Explore = () => {
             {/* Tracks Section */}
             <h2 className="section-title">
                 {currentGenreName ? `Top ${currentGenreName} Tracks` : "Top Tracks"}
+            </h2>
+            {loading && <p>Loading tracks...</p>}
+            {error && <p className="error-message">{error}</p>}
+            
+            <div className="tracks-container">
+                {tracks.length > 0 ? (
+                    tracks.map((track) => (
+                        <div key={track.id} className="track-card">
+                            <img src={track.artwork} alt={track.title} />
+                            <h2 className="track-title">{track.title}</h2>
+                            <p className="track-artist">{track.artist}</p>
+                            <a
+                                href={`https://soundcloud.com/search?q=${encodeURIComponent(track.title)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="track-link"
+                            >
+                                Listen on SoundCloud
+                            </a>
+                            {/* Link to genre page */}
+                            <Link 
+                                to={`/genre/${currentGenreName.toLowerCase() || "all"}`} 
+                                className="playlist-link"
+                            >
+                                View All {currentGenreName || "Top"} Tracks
+                            </Link>
+                        </div>
+                    ))
+                ) : (
+                    !loading && !error && <p>No tracks found</p>
+                )}
+            </div>
+
+            <h2 className="section-title">
+                {currentGenreName ? `Top ${currentGenreName} Tracks` : "Trending on SoundCloud"}
             </h2>
             {loading && <p>Loading tracks...</p>}
             {error && <p className="error-message">{error}</p>}

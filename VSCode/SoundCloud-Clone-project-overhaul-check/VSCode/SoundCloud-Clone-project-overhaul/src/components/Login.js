@@ -8,10 +8,8 @@ const Login = ({ setIsAuthenticated }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // For now, just assume the login is successful.
     setIsAuthenticated(true);
-    navigate("/"); // Redirect to homepage
+    navigate("/"); 
   };
 
   return (

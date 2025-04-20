@@ -140,15 +140,24 @@ const getMockLatestTracks = (limit = 6) => {
   ].slice(0, limit);
 };
 
+// This basically formats the track object to include a random image from the pexelsImages array
+const pexelsImages = [
+  "https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&h=200&w=200",
+  "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&h=200&w=200",
+  "https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg?auto=compress&cs=tinysrgb&h=200&w=200",
+  "https://images.pexels.com/photos/164938/pexels-photo-164938.jpeg?auto=compress&cs=tinysrgb&h=200&w=200",
+  "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&h=200&w=200"
+];
+
 const formatTrack = (track) => {
+  const randomImage = pexelsImages[Math.floor(Math.random() * pexelsImages.length)];
   return {
     id: track.id || track._id || Math.random().toString(),
     title: track.name || track.title || "Untitled",
     artist: track.artist || "Unknown Artist",
-    artwork: track.img || track.image || "https://source.unsplash.com/200x200/?music"
+    artwork: randomImage
   };
 };
-
 export { formatTrack };
 
 

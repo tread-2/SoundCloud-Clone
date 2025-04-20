@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./styles/Library.css";
 
 const Library = () => {
-  // Initial track data
+
   const allTracks = [
     { id: 1, title: "Chill Vibes", artist: "DJ Chill", artwork: "https://source.unsplash.com/200x200/?music,chill", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
     { id: 2, title: "Lo-Fi Beats", artist: "LoFi Master", artwork: "https://source.unsplash.com/200x200/?lofi,beats", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },

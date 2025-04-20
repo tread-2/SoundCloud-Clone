@@ -16,7 +16,6 @@ const GenrePage = () => {
         const fetchGenreTracks = async () => {
             setLoading(true);
             try {
-                // Fetch more tracks for the genre page (12 instead of 6)
                 const genreTracks = await getHotTracks(12, genre);
                 const formattedTracks = genreTracks.map(formatTrack);
                 setTracks(formattedTracks);
@@ -45,7 +44,6 @@ const GenrePage = () => {
                 <p>Discover the best {formattedGenre} tracks trending right now</p>
             </div>
 
-            {/* SoundCloud Player for the genre */}
             <div className="player-container">
                 <iframe
                     title="SoundCloud Genre Player"

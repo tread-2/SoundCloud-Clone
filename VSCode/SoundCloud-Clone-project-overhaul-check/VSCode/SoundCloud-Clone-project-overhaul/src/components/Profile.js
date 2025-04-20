@@ -9,7 +9,6 @@ const Profile = () => {
         profilePicture: profilePic,
     };
 
-    // Mock uploaded tracks
     const [uploadedTracks] = useState([
         { id: 1, title: "Summer Vibes", artwork: "https://source.unsplash.com/200x200/?music,summer" },
         { id: 2, title: "City Lights", artwork: "https://source.unsplash.com/200x200/?city,night" },
@@ -31,7 +30,7 @@ const Profile = () => {
             });
         }
 
-        // Add other future achievements here, based on localStorage flags
+        
         setAchievements(newAchievements);
     }, []);
 
